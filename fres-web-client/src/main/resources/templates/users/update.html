@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container m-auto">
+	<form class="" method="post" th:action="@{/user/} + ${user.username}" th:object="${user}">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card mb-3">
+					<div class="card-header">User Details</div>
+						<div class="card-body">
+							<div class="row">
+							<div class="form-group col-md-12">
+									<label  class="col-form-label">Id</label>
+									<input type="text" name="id" class="form-control"
+												th:field="${user.id}" readonly="readonly"/>
+								</div>
+								<div class="form-group col-md-12">
+									<label  class="col-form-label">Username</label>
+									<input type="text" name="name" class="form-control"
+												th:field="${user.username}" readonly="readonly"/>
+								</div>
+								<div class="form-group col-md-12">
+									<label class="col-form-label">Fullname</label>
+									<input type="text" name="fullname" class="form-control"
+												th:field="${user.fullname}">
+								</div>
+								<div class="form-group col-md-12">
+									<div class="form-group col-md-12">
+										<label class="col-form-label">Email</label> <input
+												type="text" name="email" th:field="${user.email}"
+												class="form-control">
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-form-label">Address</label>
+										<input type="text" name="address" th:field="${user.address.address}"
+												class="form-control"/>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-form-label">Phone</label>
+										<input type="text" name="phone" th:field="${user.address.phone}"
+												class="form-control"/>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-form-label">Gender</label>
+										<input type="text" name="gender" th:field="${user.address.gender}"
+												class="form-control"/>
+									</div>
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-10">
+															<a th:href="@{/home}"><input type="button"
+																class="btn btn-secondary" style="float: right;"
+																value="Cancel"></a>
+														</div>
+														<div class="col-md-2">
+															<input type="submit" class="btn btn-primary"
+																style="float: left;" value="Save ">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+	</form>
+</div>
+
+
+</body>
+</html>

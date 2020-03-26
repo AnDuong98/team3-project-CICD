@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Sign Up Form by Colorlib</title>
+
+<!-- Font Icon -->
+<link rel="stylesheet"
+	th:href="@{/home/fonts/material-icon/css/material-design-iconic-font.min.css}">
+
+<!-- Main css -->
+<link rel="stylesheet" th:href="@{/home/css/style.css}">
+
+<th:block th:include="layout/header" />
+</head>
+<body>
+	<!-- Header -->
+	<header class="header1">
+		<!-- Header desktop -->
+		<th:block th:include="layout/navigationDesktop" />
+
+		<!-- Header Mobile -->
+		<th:block th:include="layout/navigationMobile" />
+
+	</header>
+	<div class="main">
+
+		<!-- Sign up form -->
+		<section class="signup">
+			<div class="container">
+				<div class="signup-content">
+					<div class="signup-form">
+						<h2 class="form-title">Sign up</h2>
+						<form  class="register-form" id="register-form" method="post" th:action="@{/register}" th:object="${user}"
+							oninput='re_pass.setCustomValidity(re_pass.value != password.value ? "Passwords do not match" : "")'>
+							<div class="form-group">
+								<label for="name"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="username" placeholder="Username" required="required"/>
+							</div>
+							<div class="form-group">
+								<label for="name"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="fullname" placeholder="Your Name" required="required"/>
+							</div>
+							<div class="form-group">
+								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
+									type="email" name="email" placeholder="Your Email" required="required"/>
+							</div>
+							<div class="form-group">
+								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
+									type="password" name="password" placeholder="Password" required="required"/>
+							</div>
+							<div class="form-group">
+								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+								<input type="password" name="re_pass"
+									placeholder="Repeat your password" />
+							</div>
+							<div class="form-group form-button">
+								<input type="submit" value="Register" />
+							</div>
+						</form>
+					</div>
+					<div class="signup-image">
+						<figure>
+							<img th:src="@{/home/images/signup-image.jpg}"
+								alt="sing up image">
+						</figure>
+						<a th:href="@{/login}" class="signup-image-link">I am already member</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<th:block th:include="layout/footer" />
+
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top"> <i
+			class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+	<th:block th:include="layout/script">
+	<!-- JS -->
+	<script src="/home/vendor/jquery/jquery.min.js"
+		th:src="@{/home/vendor/jquery/jquery.min.js}"></script>
+	<script src="/home/js/main.js" th:src="@{/home/js/main.js}"></script>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

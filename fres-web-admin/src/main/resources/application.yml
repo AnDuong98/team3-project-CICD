@@ -1,0 +1,15 @@
+server:
+  port: 8003
+
+#report:
+#  part: D://
+  
+services:
+ hotsName: http://localhost:8004
+ productAPI: /products
+ categoryAPI: /categories
+ userAPI: /user
+ roleAPI: /role
+ addressAPI: /address
+ token: /authenticate
+ insertBatchAPI: /insertBatch

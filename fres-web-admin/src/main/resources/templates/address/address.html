@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i> Address List
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%"
+                   cellspacing="0">
+                <th:block th:include="address/formerTable" />
+                <tbody>
+                <th:block th:each="address,state : ${list}">
+                    <tr>
+                        <td><p th:text="${state.count}"></p></td>
+                        <td><p th:text="${address.address}"></p></td>
+                        <td><p th:text="${address.phone}"></p></td>
+                        <td><p th:text="${address.gender}"></p></td>
+                        <td><p th:text="${address.status}"></p></td>
+                        <td><p th:text="${address.createdDate}"></p></td>
+                        <td><p th:text="${address.modifiedDate}"></p></td>
+                </th:block>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

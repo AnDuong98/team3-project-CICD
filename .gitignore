@@ -1,0 +1,13 @@
+.idea/
+common/target/
+fres-web-admin/mvnw.cmd
+fres-web-admin/mvnw
+fres-web-admin/fres-web-admin.iml
+fres-web-admin/target/
+services/target/
+services/mvnw
+services/mvnw.cmd
+services/fres-services.iml
+file.xlxs
+fres-parent.iml
+common/fres-common.iml

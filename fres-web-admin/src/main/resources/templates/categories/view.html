@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header" />
+
+<body id="page-top">
+
+	<th:block th:include="layout/navigation" />
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<th:block th:include="layout/sidebar" />
+
+		<div id="content-wrapper" class="overflow-auto">
+
+			<div class="container" style="height: 550px; overflow: scroll;">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/Categories}">Categories</a></li>
+					<li class="breadcrumb-item active">Edit Category</li>
+				</ol>
+
+				<!-- Data Form Input Example -->
+				<form method="post" th:action="@{/Categories/update/} + ${category.id}"
+					th:object="${category}">
+					<input type="text" name="name" style="visibility: hidden;" class="form-control" th:field="${category.id}">
+					<div class="card mb-3">
+						<div class="card-header">Edit Category</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="card-body">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label for="name" class="col-form-label">Name</label> <input
+												type="text" name="name" class="form-control"
+												th:field="${category.name}">
+										</div>
+										<div class="form-group col-md-12">
+											<label for="description" class="col-form-label">Description</label>
+											<input type="text" name="description" class="form-control"
+												th:field="${category.description}">
+										</div>
+										<!-- <div class="form-group col-md-12">
+											<label for="image" class="col-form-label">Image</label>
+											<div>
+												<img th:src="@{/images/}+ ${product.image}"> <input
+													type="text" name="image" class="form-control"
+													th:field="${product.image}">
+											</div>
+										</div> -->
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-10">
+													<a th:href="@{/Categories}"><input type="button"
+														class="btn btn-secondary" style="float: right;"
+														value="Cancel"></a>
+												</div>
+												<div class="col-md-2">
+
+													<input type="submit" class="btn btn-primary"
+														style="float: left;" value="Save ">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<th:block th:include="layout/footer" />
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<th:block th:include="layout/scrolldown" />
+
+	<!-- Bootstrap core JavaScript-->
+	<th:block th:include="layout/boostrapLib" />
+
+</body>
+</html>

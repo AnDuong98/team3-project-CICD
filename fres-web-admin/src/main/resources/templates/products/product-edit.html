@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header" />
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
+<body id="page-top">
+
+	<th:block th:include="layout/navigation" />
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<th:block th:include="layout/sidebar" />
+
+		<div id="content-wrapper" class="overflow-auto">
+
+			<div class="container" style="height: 550px; overflow: scroll;">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/Product}">Products</a></li>
+					<li class="breadcrumb-item active">Edit Product</li>
+				</ol>
+
+				<!-- Data Form Input Example -->
+				<form method="post" th:action="@{/Product/update/} + ${product.id}"
+					th:object="${product}">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="card mb-3">
+								<div class="card-header">Product Details</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label for="id" class="col-form-label">ID</label> <input
+												type="text" name="name" class="form-control"
+												th:field="${product.id}" readonly>
+										</div>
+										<div class="form-group col-md-12">
+											<label for="name" class="col-form-label">Name</label> <input
+												type="text" name="name" class="form-control"
+												th:field="${product.name}">
+										</div>
+										<div class="form-group col-md-12">
+											<label for="description" class="col-form-label">Description</label>
+											<textarea name="description" class="form-control"
+												id="description" th:field="${product.description}"></textarea>
+										</div>
+										<div class="form-group col-md-12">
+											<label for="category" class="col-form-label">Status</label>
+											<input
+												type="text" name="name" class="form-control"
+												th:field="${product.status}">
+										</div>
+
+										<div class="form-group col-md-12">
+											<label for="price" class="col-form-label">Price</label> <input
+												type="text" name="price" th:field="${product.price}"
+												class="form-control">
+										</div>
+										<div class="form-group col-md-12">
+											<label for="image" class="col-form-label">Image</label>
+											<div>
+												<img th:src="@{/images/}+ ${product.image}"> <input
+													type="text" name="image" class="form-control"
+													th:field="${product.image}">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-10">
+															<a th:href="@{/Product}"><input type="button"
+																class="btn btn-secondary" style="float: right;"
+																value="Cancel"></a>
+														</div>
+														<div class="col-md-2">
+															<input type="submit" class="btn btn-primary"
+																style="float: left;" value="Save ">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="card mb-3">
+								<div class="card-header">On Category(ies)</div>
+								<div class="card-body">
+									<!-- Choose available category -->
+									<div class="form-group col-md-12">
+										<label for="category" class="col-form-label">Choose
+											Category</label> <select class="selectpicker" multiple
+											data-selected-text-format="count > 3" name="listCat"
+											id="example-getting-started">
+											<option th:each="part : ${listCat}"
+												th:selected="${selectedPartsLongSet.contains(part.id)}"
+												th:value="${part.id}" th:text="${part.name}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<th:block th:include="layout/footer" />
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<th:block th:include="layout/scrolldown" />
+
+	<!-- Bootstrap core JavaScript-->
+	<th:block th:include="layout/boostrapLib" />
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#example-getting-started')
+									.multiselect(
+											{
+												numberDisplayed : 1,
+												includeSelectAllOption : true,
+												allSelectedText : 'All Categories selected',
+												nonSelectedText : 'No Category selected',
+												selectAllValue : 'all',
+												selectAllText : 'Select all',
+												unselectAllText : 'Unselect all',
+												onSelectAll : function(checked) {
+													var all = $('#example-getting-started ~ .btn-group .dropdown-menu .multiselect-all .checkbox');
+													all
+															// get all child nodes including text and comment
+															.contents()
+															// iterate and filter out elements
+															.filter(
+																	function() {
+																		// check node is text and non-empty
+																		return this.nodeType === 3
+																				&& this.textContent
+																						.trim().length;
+																		// replace it with new text
+																	})
+															.replaceWith(
+																	checked ? this.unselectAllText
+																			: this.selectAllText);
+												},
+												onChange : function() {
+													debugger;
+													var select = $(this.$select[0]);
+													var dropdown = $(this.$ul[0]);
+													var options = select
+															.find('option').length;
+													var selected = select
+															.find('option:selected').length;
+													var all = dropdown
+															.find('.multiselect-all .checkbox');
+													all
+															// get all child nodes including text and comment
+															.contents()
+															// iterate and filter out elements
+															.filter(
+																	function() {
+																		// check node is text and non-empty
+																		return this.nodeType === 3
+																				&& this.textContent
+																						.trim().length;
+																		// replace it with new text
+																	})
+															.replaceWith(
+																	options === selected ? this.options.unselectAllText
+																			: this.options.selectAllText);
+												}
+											});
+						});
+	</script>
+	<script type="text/javascript">
+	var editor = '';
+	$(document).ready(function(){
+		editor = CKEDITOR.replace( 'description');
+	});
+	</script>
+</body>
+</html>

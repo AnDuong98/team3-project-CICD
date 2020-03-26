@@ -1,0 +1,138 @@
+<div id="layoutSidenav_nav">
+	<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+		<div class="sb-sidenav-menu">
+			<div class="nav">
+
+				<ul class="sidebar navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/}"> <i
+							class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+					</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <i class="fab fa-product-hunt"></i> <span>Products</span>
+					</a>
+						<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+							<h6 class="dropdown-header">Product Manager:</h6>
+							<a class="dropdown-item" th:href="@{/Product/create}">Add
+								Product</a> <a class="dropdown-item" th:href="@{/Product/}">List Products</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <i class="far fa-clone"></i> <span>Categories</span>
+					</a>
+						<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+							<h6 class="dropdown-header">Category Manager:</h6>
+							<a class="dropdown-item" th:href="@{/Categories/create}">Add
+								Category</a> <a class="dropdown-item" th:href="@{/Categories/}">List Categories</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <i class="far fa-clone"></i> <span>address</span></a>
+						<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+							<h6 class="dropdown-header">Address Manager:</h6>
+							 <a class="dropdown-item" th:href="@{/address/}">List address</a>
+						</div>
+						<a class="btn btn-primary" href="#"
+						   style="color: white; padding: 2px; font-size: 15px;"><i
+								class="far fa-file-excel" data-toggle="modal" data-target="#importModal"> | Import Excel File</i></a>
+						<a class="btn btn-primary" href="#"
+						   style="color: white; padding: 2px; font-size: 15px;"><i
+								class="far fa-file-excel" data-toggle="modal" data-target="#importTxt"> | Import TXT File</i></a>
+						<a th:href="@{/address/export}" class="btn btn-primary"
+						   style="color: white; padding: 2px; font-size: 15px;"><i
+								class="fas fa-file-export"> | Export Excel File</i></a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+							class="fas fa-clipboard-list"></i> <span>Orders</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/user}"> <i
+							class="far fa-address-book"></i> <span>Users</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+							class="fas fa-envelope-square"></i> <span>Messages</span>
+					</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Pages</span>
+					</a>
+						<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+							<h6 class="dropdown-header">Login Screens:</h6>
+							<a class="dropdown-item" href="login.html">Login</a> <a
+								class="dropdown-item" href="register.html">Register</a> <a
+								class="dropdown-item" href="forgot-password.html">Forgot
+								Password</a>
+							<div class="dropdown-divider"></div>
+							<h6 class="dropdown-header">Other Pages:</h6>
+							<a class="dropdown-item" href="404.html">404 Page</a> <a
+								class="dropdown-item" href="blank.html">Blank Page</a>
+						</div></li>
+					 <li class="nav-item active"><a class="nav-link"
+						href="tables.html"> <i class="fas fa-fw fa-table"></i> <span>Chart</span>
+					</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="tables.html"> <i class="fas fa-fw fa-table"></i> <span>Contact</span>
+					</a></li>
+				</ul>
+				<div class="modal fade" th:id="importTxt" tabindex="-1"
+					 role="dialog" aria-labelledby="exampleModalLabel"
+					 aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Import Txt File</h5>
+								<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+									<span aria-hidden="true">X</span>
+								</button>
+							</div>
+							<form method="post" th:action="@{/address/importTXT}" enctype="multipart/form-data">
+								<div class="modal-body">
+									<input type="file" name="file" id="input">
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary" type="button"
+											data-dismiss="modal">Back</button>
+									<button class="btn btn-primary"
+											type="submit">Import</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" th:id="importModal" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Import Excel File</h5>
+							<button class="close" type="button" data-dismiss="modal"
+									aria-label="Close">
+								<span aria-hidden="true">X</span>
+							</button>
+						</div>
+						<form method="post" th:action="@{/address/importExcelFile}" enctype="multipart/form-data">
+							<div class="modal-body">
+								<input type="file" name="file" id="input">
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-primary" type="button"
+										data-dismiss="modal">Back</button>
+								<button class="btn btn-primary"
+										type="submit">Import</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</nav>
+</div>

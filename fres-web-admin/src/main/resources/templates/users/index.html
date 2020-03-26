@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header"/>
+<!-- <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+<link rel="stylesheet" type="text/css" href="css/paginator-style.css"
+	th:href="@{css/paginator-style.css}" /> -->
+<body id="page-top">
+
+<th:block th:include="layout/navigation"/>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <th:block th:include="layout/sidebar"/>
+
+    <div id="content-wrapper">
+        <div class="container-fluid" style="height: 550px; overflow: scroll">
+            <div>
+                <a th:href="@{/user/report}">Export File</a>
+            </div>
+
+            <form th:action="@{/user/import}" method="post" enctype="multipart/form-data">
+                <input type="file" th:name="file">
+                <input type="submit" value="Import"/>
+            </form>
+            <div class="alert-danger" th:if="${param.error}"> can't read file</div>
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Users</li>
+            </ol>
+
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i> User List
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <!-- <form th:action="@{/user}" id="formSubmit" method="get"> -->
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Full Name</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:if="${user.username!='admin'}"
+                                      th:each="user : ${listuser}">
+                                <tr>
+
+                                    <td th:text="${user.id}"></td>
+                                    <td th:text="${user.fullname}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td th:text="${user.username}"></td>
+                                    <td th:if="${user.status==1}"> Active</td>
+                                    <td th:unless="${user.status==1}">Inactive</td>
+                                    <td><a th:href="@{/edit/user/{id}(id=${user.id})}"
+                                           class="btn btn-primary"> <i
+                                            class="fas fa-user-edit ml-2"></i>
+                                    </a></td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Full Name</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container-fluid -->
+
+    <!-- Sticky Footer -->
+    <th:block th:include="layout/footer"/>
+
+</div>
+<!-- /.content-wrapper -->
+
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<th:block th:include="layout/scrolldown"/>
+
+<!-- Bootstrap core JavaScript-->
+<th:block th:include="layout/boostrapLib"/>
+
+<!-- <script type="text/javascript">
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script> -->
+</body>
+
+</html>

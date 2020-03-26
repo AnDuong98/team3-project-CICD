@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header" />
+
+<body id="page-top">
+
+	<th:block th:include="layout/navigation" />
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<th:block th:include="layout/sidebar" />
+		
+		<div id="content-wrapper">
+			<div class="alert-danger" th:if="${param.error}">Can't read this type of file. Only read .txt file</div>
+			<div class="alert-danger" th:if="${param.errorE}">Can't read this type of file. Only read .xlxs file</div>
+			<div class="container-fluid" style="height: 550px; overflow: scroll">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+					<li class="breadcrumb-item active">Categories</li>
+				</ol>
+				<div class="text-left">
+					<a th:href="@{/Categories/create}" class="btn btn-primary"
+						style="color: white; padding: 2px; font-size: 15px;"><i
+						class="fas fa-plus"> | Add New Category</i></a>
+					<a class="btn btn-primary"
+					   style="color: white; padding: 2px; font-size: 15px;"><i
+							class="far fa-file-excel" data-toggle="modal" data-target="#importModal"> | Import Excel File</i></a>
+					<a class="btn btn-primary"
+					   style="color: white; padding: 2px; font-size: 15px;"><i
+							class="	fas fa-file-import" data-toggle="modal" data-target="#importTxt"> | Import Txt File</i></a>
+					<a th:href="@{/Categories/export}" class="btn btn-primary"
+					   style="color: white; padding: 2px; font-size: 15px;"><i
+							class="fas fa-file-export"> | Export Excel File</i></a>
+				</div>
+				<br>
+				<!-- DataTables Example -->
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-table"></i> Category List
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTable" width="100%"
+								cellspacing="0">
+								<th:block th:include="categories/formerTable" />
+								<tbody>
+									<th:block th:each="category,state : ${listCategory}">
+										<tr>
+											<td><p th:text="${state.count}"></p></td>
+											<td><p th:text="${category.name}"></p></td>
+											<td><p th:text="${category.description}"></p></td>
+											<td><p th:text="${category.status}"></p></td>
+											<td><img src="../images/phone.JPG" width="100px"></td>
+											<td><a th:href="@{/Categories/view/} + ${category.id}"
+												style="font-size: 15px;">Edit</a> | <a href="" data-toggle="modal"
+												data-target="#deleteModal"
+												style="font-size: 15px;" th:attr="data-target='#deleteModal'+${category.id }">Delete</a></td>
+										</tr>
+										<!-- Delete Modal-->
+										<div class="modal fade" th:id="deleteModal+${category.id }" tabindex="-1"
+											role="dialog" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Are
+															you sure to delete this category?</h5>
+														<button class="close" type="button" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">X</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<p th:text="${category.name}"></p>
+
+													</div>
+													<div class="modal-footer">
+														<button class="btn btn-primary" type="button"
+															data-dismiss="modal">Back</button>
+														<a class="btn btn-danger"
+															th:href="@{/Categories/delete/{id}(id=${category.id})}">Delete</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</th:block>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal fade" th:id="importModal" tabindex="-1"
+							 role="dialog" aria-labelledby="exampleModalLabel"
+							 aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Import Excel File</h5>
+										<button class="close" type="button" data-dismiss="modal"
+												aria-label="Close">
+											<span aria-hidden="true">X</span>
+										</button>
+									</div>
+									<form method="post" th:action="@{/Categories/import}" enctype="multipart/form-data">
+										<div class="modal-body">
+											<input type="file" name="file" id="input">
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-primary" type="button"
+													data-dismiss="modal">Back</button>
+											<button class="btn btn-primary"
+													 type="submit">Import</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- import txt -->
+						<div class="modal fade" th:id="importTxt" tabindex="-1"
+							 role="dialog" aria-labelledby="exampleModalLabel"
+							 aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Import Txt File</h5>
+										<button class="close" type="button" data-dismiss="modal"
+												aria-label="Close">
+											<span aria-hidden="true">X</span>
+										</button>
+									</div>
+									<form method="post" th:action="@{/Categories/importTXT}" enctype="multipart/form-data">
+										<div class="modal-body">
+											<input type="file" name="file" id="input">
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-primary" type="button"
+													data-dismiss="modal">Back</button>
+											<button class="btn btn-primary"
+													type="submit">Import</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+
+		</div>
+		<!-- Sticky Footer -->
+			<th:block th:include="layout/footer" />
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<th:block th:include="layout/scrolldown" />
+
+	<!-- Bootstrap core JavaScript-->
+	<th:block th:include="layout/boostrapLib" />
+
+</body>
+
+</html>

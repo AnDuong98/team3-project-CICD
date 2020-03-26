@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header" />
+
+<body id="page-top">
+
+	<th:block th:include="layout/navigation" />
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<th:block th:include="layout/sidebar" />
+
+		<div id="content-wrapper" class="overflow-auto">
+
+			<div class="container" style="height: 550px; overflow: scroll;">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/Categories}">Categories</a></li>
+					<li class="breadcrumb-item active">Add Category</li>
+				</ol>
+
+				<!-- Data Form Input Example -->
+				<form method="post" th:action="@{/Categories/save}"
+					th:object="${category}">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-table"></i>Add Category
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="name" class="col-form-label">Name</label> <input
+										type="text" name="name" class="form-control" id="name"
+										placeholder="Enter Name of Category" />
+								</div>
+								<div class="form-group col-md-6">
+									<label for="description" class="col-form-label">Description</label>
+									<input type="text" name="description" class="form-control"
+										id="description" placeholder="Enter Description of Category" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="image" class="col-form-label">Image</label> <input
+										type="file" name="image" class="form-control" id="image"
+										placeholder="Choose File Image" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-10">
+									<a th:href="@{/Categories}"><input type="button"
+										class="btn btn-secondary" style="float: right;" value="Cancel"></a>
+								</div>
+								<div class="col-md-2">
+									<input type="submit" class="btn btn-primary"
+										style="float: left;" value="Create ">
+								</div>
+							</div>
+							<br>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<th:block th:include="layout/footer" />
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<th:block th:include="layout/scrolldown" />
+
+	<!-- Bootstrap core JavaScript-->
+	<th:block th:include="layout/boostrapLib" />
+
+</body>
+</html>

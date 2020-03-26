@@ -1,0 +1,98 @@
+<div class="container-menu-header">
+	<div class="topbar">
+		<div class="topbar-social">
+			<a href="#" class="topbar-social-item fa fa-facebook"></a> <a
+				href="#" class="topbar-social-item fa fa-instagram"></a> <a href="#"
+				class="topbar-social-item fa fa-pinterest-p"></a> <a href="#"
+				class="topbar-social-item fa fa-snapchat-ghost"></a> <a href="#"
+				class="topbar-social-item fa fa-youtube-play"></a>
+		</div>
+
+		<span class="topbar-child1"> Free shipping for standard order
+			over $1000 </span>
+
+		<div class="topbar-child2">
+			<span>Team 3 Smartosc</span>
+		</div>
+	</div>
+	<div class="wrap_header">
+		<!-- Logo -->
+		<a th:href="@{/wines/}" class="logo"> <img
+			th:src="@{/images/icons/logo.png}" alt="IMG-LOGO">
+		</a>
+
+		<!-- Menu -->
+		<div class="wrap_menu">
+			<nav class="menu">
+				<ul class="main_menu">
+					<li><a th:href="@{/wines/}">Home</a></li>
+
+					<li><a th:href="@{/wines/}">Shop</a></li>
+
+					<li><a th:href="@{/cart/Cart-Info}">Cart</a></li>
+
+					<li><a th:href="@{/wines/about}">About</a></li>
+
+				</ul>
+			</nav>
+		</div>
+
+		<!-- Header Icon -->
+		<div class="header-icons">			
+			<nav class="menu">
+				<ul class="main_menu">
+					<li><a href="#" class="header-wrapicon1 dis-block"> <img
+							th:src="@{/images/icons/icon-header-01.png}" class="header-icon1"
+							alt="ICON">
+					</a>
+						<ul class="sub_menu">
+							<li th:if="${#request.userPrincipal==null}"><a th:href="@{/login}">Login</a></li>
+						 	<li th:unless="${#request.userPrincipal==null}"><a th:href="@{/logout}">Logout</a></li>
+							<li th:unless="${#request.userPrincipal==null}"><a th:href="@{/user/}+${#request.userPrincipal.name}">Update Profile</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav><span class="linedivide1"> </span>
+			<div class="header-wrapicon2">
+				<img th:src="@{/images/icons/icon-header-02.png}"
+					class="header-icon1 js-show-header-dropdown" alt="ICON"> <span
+					class="header-icons-noti">0</span>
+
+				<!-- Header cart noti -->
+				<div class="header-cart header-dropdown">
+					<ul class="header-cart-wrapitem" th:each="item : ${cart}">
+						<li class="header-cart-item">
+							<div class="header-cart-item-img">
+								<img th:src='@{/images/item-cart-03.jpg}' alt="IMG">
+							</div>
+
+							<div class="header-cart-item-txt">
+								<a href="#" class="header-cart-item-name"> <p  th:text="${item.productDTO.image}"></p> 
+								</a><p th:text="${item.productDTO.price}"></p> <span class="header-cart-item-info">
+									 </span>
+							</div>
+						</li>
+					</ul>
+
+					<div class="header-cart-total"><p th:text="${total}"></p></div>
+
+					<div class="header-cart-buttons">
+						<div class="header-cart-wrapbtn">
+							<!-- Button -->
+							<a th:href="@{/cart/Cart-Info}"
+								class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+								View Cart </a>
+						</div>
+
+						<div class="header-cart-wrapbtn">
+							<!-- Button -->
+							<a th:href="@{/wines/checkout}"
+								class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+								Check Out </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

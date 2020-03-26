@@ -1,0 +1,11 @@
+services:
+ hotsName: http://localhost:8004
+ productAPI: /products
+ categoryAPI: /categories
+ userAPI: /user
+ roleAPI: /role
+ orderAPI: /orders
+ token: /authenticate
+
+server:
+  port: 8002

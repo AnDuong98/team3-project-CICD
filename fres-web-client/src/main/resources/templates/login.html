@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- Font Icon -->
+<link rel="stylesheet"
+	th:href="@{/home/fonts/material-icon/css/material-design-iconic-font.min.css}">
+
+<!-- Main css -->
+<link rel="stylesheet" th:href="@{/home/css/style.css}">
+<th:block th:include="layout/header" />
+</head>
+<body>
+	<!-- Header -->
+	<header class="header1">
+		<!-- Header desktop -->
+		<th:block th:include="layout/navigationDesktop" />
+
+		<!-- Header Mobile -->
+		<th:block th:include="layout/navigationMobile" />
+
+	</header>
+	
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m">
+		<img th:src="@{/images/icons/logo.png}" alt="IMG-PRODUCT">
+	</section>
+	
+	<div class="main">
+
+		<!-- Sing in  Form -->
+		<section class="sign-in">
+			<div class="container">
+				<div class="signin-content">
+					<div class="signin-image">
+						<figure>
+							<img th:src="@{/home/images/signin-image.jpg}" alt="sing up image">
+						</figure>
+						<a th:href="@{/register}" class="signup-image-link">Create an account</a>
+					</div>
+
+					<div class="signin-form">
+						<h2 class="form-title">Sign in</h2>
+						<form method="post" class="register-form" id="login-form" th:action="login-action">
+							<div class="form-group">
+								<label for="your_name"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="username" placeholder="Username" />
+							</div>
+							<div class="form-group">
+								<label for="your_pass"><i class="zmdi zmdi-lock"></i></label> <input
+									type="password" name="password"
+									placeholder="Password" />
+							</div>
+							<div class="form-group">
+								<p class="text-danger p-2" th:if="${param.error}">Invalid Password or Username!!</p>
+							</div>
+							<div class="form-group form-button">
+								<input type="submit" class="form-submit" value="Login" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+<!-- Footer -->
+	<th:block th:include="layout/footer" />
+
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top"> <i
+			class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+
+	<th:block th:include="layout/script">
+	<!-- JS -->
+	<script src="/home/vendor/jquery/jquery.min.js" th:src="@{/home/vendor/jquery/jquery.min.js}"></script>
+	<script src="/home/js/main.js" th:src="@{/home/js/main.js}"></script>
+</body>

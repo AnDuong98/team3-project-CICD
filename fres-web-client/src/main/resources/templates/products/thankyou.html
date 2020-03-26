@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<th:block th:include="layout/header" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header1">
+		<!-- Header desktop -->
+		<th:block th:include="layout/navigationDesktop" />
+
+		<!-- Header Mobile -->
+		<th:block th:include="layout/navigationMobile" />
+
+	</header>
+
+	<div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <span class="icon-check_circle display-3 text-success"></span>
+            <h2 class="display-3 text-black font-heading-serif">Thank you!</h2>
+            <p class="lead mb-5">You order was successfuly completed.</p>
+            <p><a th:href="@{/wines/}" class="btn btn-md height-auto px-4 py-3 btn-primary">Back to store</a></p>
+          </div>
+        </div>
+      </div>
+    </div><br><br>
+
+	<!-- Footer -->
+	<th:block th:include="layout/footer" />
+
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top"> <i
+			class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+
+
+
+	<!--===============================================================================================-->
+	<th:block th:include="layout/script"/>
+</body>
+</html>

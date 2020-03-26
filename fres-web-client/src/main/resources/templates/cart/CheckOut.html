@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<th:block th:include="layout/header" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header1">
+		<!-- Header desktop -->
+		<th:block th:include="layout/navigationDesktop" />
+
+		<!-- Header Mobile -->
+		<th:block th:include="layout/navigationMobile" />
+
+	</header>
+
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m">
+
+		<div class="row mb-5 justify-content-center">
+			<div class="col-7 section-title text-center mb-5">
+				<h2 class="d-block">Checkout</h2>
+			</div>
+		</div>
+	</section>
+
+	<div class="site-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md-12">
+					<div class="bg-light rounded p-3">
+						<p class="mb-0">
+							Returning customer? <a href="#" class="d-inline-block">Click
+								here</a> to login
+						</p>
+					</div>
+				</div>
+			</div>
+			<form th:action="@{/cart/order}" method="POST">
+				<div class="row">
+
+				<div class="col-md-6 mb-5 mb-md-0">
+					<h2 class="h3 mb-3 text-black font-heading-serif">Billing
+						Details</h2>
+					<div class="p-3 p-lg-5 border" th:object="${user}">
+						<div class="form-group row">
+							<div class="col-md-12" >
+								<label  class="text-black">Full Name : [[${user.fullname}]]</label>
+							
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-12">
+								<label  class="text-black">Address  : [[${user.address.address}]]</label>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-12">
+								<label  class="text-black">Email  : [[${user.email}]]</label>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<div class="col-md-12">
+								<label  class="text-black">Phone  : [[${user.address.phone}]]</label>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label><a th:href="@{/regiter}"></a> Create
+								an account?</label>
+						</div>
+
+						
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row mb-5">
+						<div class="col-md-12">
+							<h2 class="h3 mb-3 text-black font-heading-serif">Your Order</h2>
+							<div class="p-3 p-lg-5 border">
+								<table class="table site-block-order-table mb-5" >
+									<thead>
+										<th>Product</th>
+										<th>Total</th>
+									</thead>
+									<tbody >
+										<tr th:each="item : ${cart}">
+											<td>[[${item.productDTO.name}]]<strong class="mx-2"> x [[${item.quantity}]]</strong>
+											</td>
+											<td>[[${item.ProductDTO.price} * ${item.quantity}]]</td>
+										</tr>
+										
+										<tr>
+											<td class="text-black font-weight-bold"><strong>Cart
+													Subtotal</strong></td>
+											<td class="text-black" th:text="${total}"></td>
+										</tr>
+										<tr>
+											<td class="text-black font-weight-bold"><strong>Order
+													Total</strong></td>
+											<td class="text-black font-weight-bold"><strong th:text="${total}"></strong></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="form-group">
+										<input type="submit" class="btn btn-primary btn-lg btn-block" value="Place
+											Order"/>
+									
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			</form>
+			<!-- </form> -->
+		</div>
+	</div>
+
+
+	<!-- Footer -->
+	<th:block th:include="layout/footer" />
+
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top"> <i
+			class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+
+
+
+	<!--===============================================================================================-->
+	<th:block th:include="layout/script"/>
+</body>
+</html>

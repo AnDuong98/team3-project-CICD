@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header" />
+<head>
+<style>
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+}
+
+.price {
+	color: grey;
+	font-size: 22px;
+}
+
+.price:before {
+	content: '$.';
+}
+
+.card button {
+	border: none;
+	outline: 0;
+	padding: 12px;
+	color: white;
+	background-color: #000;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+}
+
+.card button:hover {
+	opacity: 0.7;
+}
+</style>
+</head>
+<body id="page-top">
+
+	<th:block th:include="layout/navigation" />
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<th:block th:include="layout/sidebar" />
+
+		<div id="content-wrapper" class="overflow-auto">
+
+			<div class="container" style="height: 550px; overflow: scroll;">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/Product}">Products
+					</a></li>
+					<li class="breadcrumb-item active" th:utext="${product.name}"></li>
+				</ol>
+
+				<!-- View Product -->
+				<div class="card mb-3">
+					<div class="card-header">
+						<p th:text="${product.name}" style="float: left;"></p>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-4">
+								<img src="/images/macbook.jpg" alt="Denim Jeans"
+									style="width: 100%">
+							</div>
+							<div class="col-md-8" style="border-left: 3px solid grey;">
+								<h1 th:text="${product.name}"></h1>
+								<hr>
+								<p class="price" th:text="${product.price}"></p>
+								<div id="description"></div>
+								<a class="btn btn-secondary" th:href="@{/Product}">Back</a> <a
+									class="btn btn-primary"
+									th:href="@{/Product/update/} + ${product.id}">Update</a>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+		<!-- Sticky Footer -->
+		<th:block th:include="layout/footer" />
+
+	</div>
+	<!-- /.content-wrapper -->
+
+
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<th:block th:include="layout/scrolldown" />
+
+	<!-- Bootstrap core JavaScript-->
+	<th:block th:include="layout/boostrapLib" />
+	<script th:inline="javascript">
+		$("#description").html([[${product.description}]]);
+	</script>
+</body>
+</html>

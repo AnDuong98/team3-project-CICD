@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="layout/header" />
+
+<body id="page-top">
+
+	<th:block th:include="layout/navigation" />
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<th:block th:include="layout/sidebar" />
+
+		<div id="content-wrapper" class="overflow-auto">
+
+			<div class="container" style="height: 550px; overflow: scroll;">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/user}">User</a></li>
+					<li class="breadcrumb-item active">Edit User</li>
+				</ol>
+
+				<!-- Data Form Input Example -->
+				<form id="form" method="post" th:action="@{/admin/user}"
+					th:object="${model}">
+					<div class="card mb-3">
+						<div class="card-header">Edit User</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="card-body">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label  class="col-form-label">Full Name</label> <input
+												readonly type="text" th:value="${model.fullname}"
+												th:field="*{fullname}" class="form-control" id="fullname"
+												placeholder="Last Name" />
+										</div>
+										<div class="form-group col-md-12">
+											<label for="email" class="col-form-label">Email</label> <input
+												readonly type="text" th:value="${model.email}"
+												th:field="*{email}" class="form-control" id="email"
+												placeholder="Email Id" />
+										</div>
+										<div class="form-group col-md-12">
+											<label for="email" class="col-form-label">User Name</label> <input
+												readonly type="text" th:value="${model.username}"
+												th:field="*{username}" class="form-control" id="username"
+												placeholder="Email Id" />
+										</div>
+
+										<div class="form-group col-md-12">
+											<label for="email" class="col-form-label">Status</label> <select
+												th:field="*{status}" id="status">
+												<option value="1">Active</option>
+												<option value="0">InActive</option>
+											</select>
+										</div>
+										<div class="col-md-6">
+											<input type="submit" onclick="alerts()"
+												class="btn btn-primary" value=" Submit " />
+										</div>
+
+										<input type="hidden" id="id" th:field="*{id}" /> <input
+											type="hidden" th:field="*{password}" />
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- /.container-fluid -->
+
+			<script>
+		$(document).ready(function() {
+			$("#status").val([[${model.status}]]);		
+		});
+	</script>
+			<!-- Sticky Footer -->
+			<th:block th:include="layout/footer" />
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<th:block th:include="layout/scrolldown" />
+
+	<!-- Bootstrap core JavaScript-->
+	<th:block th:include="layout/boostrapLib" />
+
+</body>
+</html>

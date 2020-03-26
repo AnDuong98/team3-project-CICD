@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+table{width:100%;}
+table td, table th { border: 1px solid grey;}
+table th { background: #eee;}
+.pagination-div{user-select: none;}
+.pagination-div span{border-radius:3px;border:1px solid #999;
+   padding:5px;margin:10px 0px 0px 10px;display:inline-block}
+span.selected{background:#ccf;}
+</style>
+</head>
+<body>
+<h2>Products</h2>
+<table>
+    <tr><th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    <tr th:each="product : ${listproduct}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+    </tr>
+</table>
+
+<div class="pagination-div">
+   <!--  <span th:if="${page.hasPrevious()}">
+        <a th:href="@{/Product/list(page=${page.number-1},size=${page.size})}">Previous</a>
+    </span> -->
+    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages -1)}">
+        <span>
+      		<a th:if="${i==page.pageNumber}" >[[${i}+1]]</a>
+            <a th:unless="${i==page.pageNumber}" th:href="@{/Product/list(page=${i},size=${page.size})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+    <!-- <span th:if="${page.hasNext()}">
+        <a th:href="@{/Product/list(page=${page.number+1},size=${page.size})}">Next</a>
+    </span> -->
+</div>
+</body>
+</html>
